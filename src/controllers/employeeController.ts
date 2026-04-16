@@ -5,6 +5,9 @@ import { CreateEmployeeInput, UpdateEmployeeInput, EmployeeQueryParams } from '.
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const isDuplicateEmail = (err: unknown): boolean =>
+  (err as { code?: string }).code === '23505';
+
 export const createEmployee = async (
   req: Request,
   res: Response,
@@ -26,6 +29,10 @@ export const createEmployee = async (
     const employee = await employeeModel.createEmployee({ full_name, email, phone, department, salary });
     res.status(201).json({ status: 'success', data: { employee } });
   } catch (err) {
+    if (isDuplicateEmail(err)) {
+      next(new AppError('Email already exists', 409));
+      return;
+    }
     next(err);
   }
 };
@@ -123,6 +130,10 @@ export const updateEmployee = async (
 
     res.status(200).json({ status: 'success', data: { employee } });
   } catch (err) {
+    if (isDuplicateEmail(err)) {
+      next(new AppError('Email already exists', 409));
+      return;
+    }
     next(err);
   }
 };
