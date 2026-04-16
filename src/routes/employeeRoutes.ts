@@ -18,6 +18,8 @@ const router = Router();
  *   post:
  *     summary: Create a new employee
  *     tags: [Employees]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -83,6 +85,8 @@ router.post('/', authenticate, authorize('admin'), employeeController.createEmpl
  *   get:
  *     summary: Get all employees with pagination and search
  *     tags: [Employees]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -136,6 +140,8 @@ router.get('/', authenticate, authorize('admin', 'employee'), employeeController
  *   get:
  *     summary: Get an employee by ID
  *     tags: [Employees]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -178,6 +184,8 @@ router.get('/:id', authenticate, authorize('admin', 'employee'), employeeControl
  *   put:
  *     summary: Update an employee
  *     tags: [Employees]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -249,6 +257,8 @@ router.put('/:id', authenticate, authorize('admin'), employeeController.updateEm
  *   delete:
  *     summary: Soft delete an employee
  *     tags: [Employees]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

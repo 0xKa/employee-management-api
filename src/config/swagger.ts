@@ -11,6 +11,13 @@ const options: swaggerJsdoc.Options = {
     },
     servers: [{ url: `http://localhost:${process.env.PORT || 3000}` }],
     components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
       schemas: {
         Employee: {
           type: 'object',
