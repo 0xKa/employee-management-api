@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import * as employeeController from '../controllers/employeeController';
+import authenticate from '../middleware/authenticate';
+import authorize from '../middleware/authorize';
 
 const router = Router();
 
@@ -73,7 +75,7 @@ const router = Router();
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.post('/', employeeController.createEmployee);
+router.post('/', authenticate, authorize('admin'), employeeController.createEmployee);
 
 /**
  * @swagger
@@ -126,7 +128,7 @@ router.post('/', employeeController.createEmployee);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get('/', employeeController.getAllEmployees);
+router.get('/', authenticate, authorize('admin', 'employee'), employeeController.getAllEmployees);
 
 /**
  * @swagger
@@ -168,7 +170,7 @@ router.get('/', employeeController.getAllEmployees);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get('/:id', employeeController.getEmployeeById);
+router.get('/:id', authenticate, authorize('admin', 'employee'), employeeController.getEmployeeById);
 
 /**
  * @swagger
@@ -239,7 +241,7 @@ router.get('/:id', employeeController.getEmployeeById);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.put('/:id', employeeController.updateEmployee);
+router.put('/:id', authenticate, authorize('admin'), employeeController.updateEmployee);
 
 /**
  * @swagger
@@ -277,6 +279,6 @@ router.put('/:id', employeeController.updateEmployee);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.delete('/:id', employeeController.deleteEmployee);
+router.delete('/:id', authenticate, authorize('admin'), employeeController.deleteEmployee);
 
 export default router;
