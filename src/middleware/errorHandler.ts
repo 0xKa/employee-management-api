@@ -5,7 +5,19 @@ interface PgError extends Error {
   code?: string;
 }
 
-const errorHandler = (err: PgError, req: Request, res: Response): void => {
+const errorHandler = (
+  err: PgError,
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): void => {
+  if (res.headersSent) {
+    next(err);
+    return;
+  }
+
+  res.setHeader("Content-Type", "application/json");
+
   if (err instanceof AppError) {
     res.status(err.statusCode).json({ status: "error", message: err.message });
     return;
