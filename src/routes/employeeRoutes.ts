@@ -26,11 +26,11 @@ const router = Router();
  *             properties:
  *               full_name:
  *                 type: string
- *                 example: Jane Doe
+ *                 example: Reda Hilal
  *               email:
  *                 type: string
  *                 format: email
- *                 example: jane@example.com
+ *                 example: reda@example.com
  *               phone:
  *                 type: string
  *                 example: "+1234567890"
@@ -192,11 +192,11 @@ router.get('/:id', employeeController.getEmployeeById);
  *             properties:
  *               full_name:
  *                 type: string
- *                 example: Jane Smith
+ *                 example: Reda Hilal
  *               email:
  *                 type: string
  *                 format: email
- *                 example: jane.smith@example.com
+ *                 example: reda@example.com
  *               phone:
  *                 type: string
  *                 example: "+9876543210"

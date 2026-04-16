@@ -1,4 +1,4 @@
--- Employee Management API — Database Schema
+-- Employee Management API
 
 CREATE TABLE IF NOT EXISTS employees (
   id          SERIAL PRIMARY KEY,
@@ -8,5 +8,5 @@ CREATE TABLE IF NOT EXISTS employees (
   department  VARCHAR(50)    NOT NULL,
   salary      DECIMAL(10, 2) NOT NULL,
   created_at  TIMESTAMP      DEFAULT NOW(),
-  deleted_at  TIMESTAMP      DEFAULT NULL -- NULL = active; soft delete
+  deleted_at  TIMESTAMP      DEFAULT NULL 
 );

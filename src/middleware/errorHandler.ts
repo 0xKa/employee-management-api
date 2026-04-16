@@ -1,34 +1,29 @@
 import { Request, Response, NextFunction } from 'express';
-import AppError from '../utils/AppError';
+import AppError from "../utils/AppError";
 
 interface PgError extends Error {
   code?: string;
 }
 
-const errorHandler = (
-  err: PgError,
-  req: Request,
-  res: Response,
-  next: NextFunction
-): void => {
+const errorHandler = (err: PgError, req: Request, res: Response): void => {
   if (err instanceof AppError) {
-    res.status(err.statusCode).json({ status: 'error', message: err.message });
+    res.status(err.statusCode).json({ status: "error", message: err.message });
     return;
   }
 
-  // PostgreSQL unique constraint violation
-  if (err.code === '23505') {
-    res.status(409).json({ status: 'error', message: 'Email already exists' });
+  // postgres unique constraint violation
+  if (err.code === "23505") {
+    res.status(409).json({ status: "error", message: "Email already exists" });
     return;
   }
 
-  // PostgreSQL invalid text representation (e.g. bad UUID/int cast)
-  if (err.code === '22P02') {
-    res.status(400).json({ status: 'error', message: 'Invalid ID format' });
+  // postgres invalid text representation (e.g. bad UUID/int cast)
+  if (err.code === "22P02") {
+    res.status(400).json({ status: "error", message: "Invalid ID format" });
     return;
   }
 
-  res.status(500).json({ status: 'error', message: 'Internal server error' });
+  res.status(500).json({ status: "error", message: "Internal server error" });
 };
 
 export default errorHandler;

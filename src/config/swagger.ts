@@ -16,8 +16,8 @@ const options: swaggerJsdoc.Options = {
           type: 'object',
           properties: {
             id: { type: 'integer', example: 1 },
-            full_name: { type: 'string', example: 'Jane Doe' },
-            email: { type: 'string', format: 'email', example: 'jane@example.com' },
+            full_name: { type: 'string', example: 'Reda Hilal' },
+            email: { type: 'string', format: 'email', example: 'reda@example.com' },
             phone: { type: 'string', example: '+1234567890' },
             department: { type: 'string', example: 'Engineering' },
             salary: { type: 'number', example: 75000 },

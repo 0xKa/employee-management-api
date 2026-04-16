@@ -24,7 +24,7 @@ export const getAllEmployees = async (
   const limit = Math.max(1, Math.min(100, parseInt(params.limit || '10', 10) || 10));
   const offset = (page - 1) * limit;
 
-  const queryValues: unknown[] = [];
+  const queryValues = [];
   let whereClause = 'WHERE deleted_at IS NULL';
 
   if (params.search) {
