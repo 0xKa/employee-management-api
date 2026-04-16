@@ -60,7 +60,7 @@ export const getEmployeeById = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = parseInt(String(req.params.id), 10);
     if (isNaN(id) || id <= 0) {
       throw new AppError('Invalid employee ID', 400);
     }
@@ -82,7 +82,7 @@ export const updateEmployee = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = parseInt(String(req.params.id), 10);
     if (isNaN(id) || id <= 0) {
       throw new AppError('Invalid employee ID', 400);
     }
@@ -133,7 +133,7 @@ export const deleteEmployee = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = parseInt(String(req.params.id), 10);
     if (isNaN(id) || id <= 0) {
       throw new AppError('Invalid employee ID', 400);
     }
