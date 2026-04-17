@@ -1,8 +1,9 @@
-import type { Config } from 'jest';
-
-const config: Config = {
-  preset: 'ts-jest',
+/** @type {import('jest').Config} */
+module.exports = {
   testEnvironment: 'node',
+  transform: {
+    '^.+\\.ts$': ['ts-jest', { tsconfig: { types: ['jest', 'node'] } }],
+  },
   testMatch: ['**/__tests__/**/*.test.ts'],
   setupFiles: ['./src/__tests__/setup.ts'],
   collectCoverageFrom: [
@@ -10,8 +11,5 @@ const config: Config = {
     '!src/index.ts',
     '!src/app.ts',
     '!src/config/swagger.ts',
-    '!src/database.sql',
   ],
 };
-
-export default config;

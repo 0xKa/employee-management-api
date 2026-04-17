@@ -8,8 +8,8 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "clean": "rm -rf dist",
-    "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test": "node --no-deprecation node_modules/jest/bin/jest.js",
+    "test:coverage": "node --no-deprecation node_modules/jest/bin/jest.js --coverage"
   },
   "repository": {
     "type": "git",
