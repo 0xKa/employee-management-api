@@ -1,0 +1,15 @@
+node_modules
+dist
+coverage
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+local
+postman
+*.log
+README.md
+.github
+jest.config.js
+src/__tests__
