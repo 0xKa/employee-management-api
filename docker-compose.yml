@@ -36,5 +36,15 @@ services:
     ports:
       - "${PORT}:3000"
 
+  test:
+    build:
+      context: .
+      target: builder
+    command: npm test
+    volumes:
+      - ./src/__tests__:/app/src/__tests__
+      - ./jest.config.js:/app/jest.config.js
+    profiles: ["test"]
+
 volumes:
   pgdata:
